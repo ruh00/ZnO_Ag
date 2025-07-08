@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nanoparticle-Enhanced Medical Textiles: A Comprehensive Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-deep: #0f172a;
+            --navy-medium: #1e293b;
+            --navy-light: #334155;
+            --gold-accent: #d4af37;
+            --gold-light: #f7e98e;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            overflow-x: hidden;
+        }
+        
+        .serif-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-medium) 50%, var(--navy-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vanta-canvas {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--navy-deep);
+            z-index: 50;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .toc-link {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        .toc-link:hover, .toc-link.active {
+            background: var(--navy-light);
+            color: white;
+            transform: translateX(4px);
+        }
+        
+        .section-header {
+            border-left: 4px solid var(--gold-accent);
+            padding-left: 1.5rem;
+            margin: 3rem 0 2rem 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .citation-link {
+            color: var(--gold-accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--gold-accent);
+            transition: all 0.3s ease;
+        }
+        
+        .citation-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .bento-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .px-8 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .insight-highlight {
+            background: linear-gradient(135deg, var(--gold-light) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-left: 4px solid var(--gold-accent);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .performance-metric {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .performance-metric:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15);
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+        }
+        
+        .nav-dot {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.3);
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--gold-accent);
+            transform: scale(1.3);
+        }
+    </style>
+  </head>
+
+  <body class="text-slate-800">
+    <!-- Table of Contents Sidebar -->
+    <nav class="toc-sidebar">
+      <div class="mb-8">
+        <h3 class="text-white font-semibold text-lg mb-4">Contents</h3>
+      </div>
+      <div class="space-y-2">
+        <a href="#executive-summary" class="toc-link">Executive Summary</a>
+        <a href="#introduction" class="toc-link">Introduction</a>
+        <a href="#zno-nanoparticles" class="toc-link">ZnO Nanoparticles</a>
+        <a href="#ag-nanoparticles" class="toc-link">Ag Nanoparticles</a>
+        <a href="#combined-zno-ag" class="toc-link">Combined ZnO/Ag</a>
+        <a href="#uv-protection" class="toc-link">UV Protection</a>
+        <a href="#alternatives" class="toc-link">Alternative Nanoparticles</a>
+        <a href="#challenges" class="toc-link">Challenges & Future</a>
+        <a href="#conclusion" class="toc-link">Conclusion</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-bg min-h-screen relative">
+        <div id="vanta-bg" class="absolute inset-0"></div>
+        <div class="hero-content relative z-10 flex items-center min-h-screen">
+          <div class="container mx-auto px-8 py-16">
+            <div class="max-w-4xl">
+              <h1 class="serif-heading text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                <span class="italic text-yellow-300">Nanoparticle-Enhanced</span>
+                <br>
+                Medical Textiles
+              </h1>
+              <p class="text-xl text-slate-300 mb-8 leading-relaxed max-w-2xl">
+                A comprehensive review of ZnO and Ag nanoparticle applications in healthcare textiles,
+                exploring synergistic effects, UV protection mechanisms, and emerging alternatives.
+              </p>
+              <div class="flex items-center space-x-6 text-slate-400">
+                <span class="flex items-center">
+                  <i class="fas fa-microscope mr-2"></i>
+                  Advanced Materials
+                </span>
+                <span class="flex items-center">
+                  <i class="fas fa-shield-virus mr-2"></i>
+                  Healthcare Innovation
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Executive Summary</h2>
+          </div>
+
+          <div class="bento-grid">
+            <div class="bento-card">
+              <h3 class="serif-heading text-2xl font-semibold mb-4 text-slate-800">Key Findings</h3>
+              <p class="text-slate-600 mb-4 leading-relaxed">
+                Fabric treatment with zinc oxide (ZnO) and silver (Ag) nanoparticles offers significant
+                advancements in healthcare solutions, particularly for medical textiles and UV protection.
+                These nanoparticles impart potent antibacterial properties and enhance UV blocking capabilities
+                through multiple mechanisms including reactive oxygen species (ROS) generation and ion release.
+              </p>
+              <div class="insight-highlight">
+                <p class="font-semibold text-slate-800">
+                  <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                  Synergistic combinations of ZnO and Ag nanoparticles demonstrate enhanced antimicrobial
+                  activity compared to individual nanoparticles, with potential for reduced toxicity and cost.
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="performance-metric">
+                <div class="text-3xl font-bold text-yellow-600 mb-2">50+</div>
+                <div class="text-sm text-slate-600">UPF Rating Achieved</div>
+              </div>
+              <div class="performance-metric">
+                <div class="text-3xl font-bold text-blue-600 mb-2">99.9%</div>
+                <div class="text-sm text-slate-600">Antibacterial Activity</div>
+              </div>
+              <div class="performance-metric">
+                <div class="text-3xl font-bold text-green-600 mb-2">25+</div>
+                <div class="text-sm text-slate-600">Wash Cycle Durability</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box mt-8">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Critical Challenges</h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-semibold text-slate-800 mb-2">Technical Barriers</h5>
+                <ul class="text-slate-600 space-y-1">
+                  <li>• Wash fastness and durability maintenance</li>
+                  <li>• Uniform nanoparticle distribution</li>
+                  <li>• Scalable synthesis and application methods</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-semibold text-slate-800 mb-2">Safety & Regulatory</h5>
+                <ul class="text-slate-600 space-y-1">
+                  <li>• Biocompatibility and toxicity concerns</li>
+                  <li>• Environmental impact assessment</li>
+                  <li>• Standardized testing protocols</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section id="introduction" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Introduction</h2>
+          </div>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-slate-600 leading-relaxed mb-6">
+              The integration of <strong>nanotechnology into the textile industry</strong> has ushered in a new era of
+              <strong>functional fabrics</strong>, particularly for specialized applications such as healthcare and personal
+              protective equipment. <strong>Nanoparticles (NPs)</strong>, due to their exceptionally
+              <strong>high surface area-to-volume ratio</strong> and unique physicochemical properties compared to their
+              bulk counterparts, offer <strong>enhanced reactivity and interaction capabilities</strong>
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S2468519424005275" class="citation-link" target="_blank">[1]</a>.
+            </p>
+
+            <div class="bento-grid my-8">
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4">Healthcare Impact</h4>
+                <p class="text-slate-600 mb-4">
+                  Healthcare-Associated Infections (HAIs) represent a major global health concern,
+                  with infected patients experiencing significantly longer hospitalizations
+                  (mean 35.1 days vs 14.8 days) and higher medical costs.
+                </p>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                  <div class="text-2xl font-bold text-slate-800">$4,908</div>
+                  <div class="text-sm text-slate-600">Additional medical expenditure per surgical patient with HAI</div>
+                </div>
+              </div>
+
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4">Market Opportunity</h4>
+                <p class="text-slate-600 mb-4">
+                  The global medical textile market presents significant growth potential,
+                  driven by increasing demand for advanced functional textiles.
+                </p>
+                <div class="bg-slate-100 p-4 rounded-lg">
+                  <div class="text-2xl font-bold text-slate-800">$22.93B</div>
+                  <div class="text-sm text-slate-600">Market value in 2022</div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+              These characteristics are leveraged to impart a wide array of functionalities to textiles,
+              including <strong>antimicrobial activity, UV protection, self-cleaning properties, and improved durability</strong>
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S2468519424005275" class="citation-link" target="_blank">[1]</a>
+              <a href="https://www.scirp.org/journal/paperinformation?paperid=102743" class="citation-link" target="_blank">[138]</a>.
+              The application of NPs in textiles involves various methods such as in-situ synthesis, coating,
+              and embedding within fibers, allowing for the development of advanced materials that meet specific performance requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZnO Nanoparticles -->
+      <section id="zno-nanoparticles" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Fabric Treatment with Zinc Oxide Nanoparticles</h2>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="serif-heading text-2xl font-semibold mb-4">Synthesis Methods</h3>
+              <p class="text-slate-600 mb-4">
+                ZnO nanoparticles are synthesized through chemical, physical, and biological methods.
+                <strong>Bio-mediated synthesis</strong> has emerged as a sustainable alternative,
+                utilizing plant extracts and microorganisms as reducing and capping agents.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start space-x-3">
+                  <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <strong class="text-slate-800">Green Synthesis:</strong>
+                    <span class="text-slate-600">Nigella sativa seeds, avocado extracts</span>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <strong class="text-slate-800">Conventional Methods:</strong>
+                    <span class="text-slate-600">Sol-gel, solvothermal, chemical vapor synthesis</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="serif-heading text-2xl font-semibold mb-4">Antibacterial Mechanisms</h3>
+              <p class="text-slate-600 mb-4">
+                ZnO nanoparticles exhibit potent antibacterial activity through multiple mechanisms:
+              </p>
+              <ul class="space-y-3 text-slate-600">
+                <li class="flex items-start space-x-3">
+                  <i class="fas fa-atom text-red-500 mt-1"></i>
+                  <span><strong>ROS Generation:</strong> Hydroxyl radicals, superoxide radicals, hydrogen peroxide</span>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <i class="fas fa-bolt text-blue-500 mt-1"></i>
+                  <span><strong>Zn²⁺ Ion Release:</strong> Interference with bacterial metabolic processes</span>
+                </li>
+                <li class="flex items-start space-x-3">
+                  <i class="fas fa-hammer text-green-500 mt-1"></i>
+                  <span><strong>Physical Damage:</strong> Direct membrane disruption and cell lysis</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Biocompatibility & Safety</h4>
+            <p class="text-slate-600 mb-4">
+              ZnO is classified as <strong>"Generally Recognized As Safe" (GRAS)</strong> by the U.S. FDA,
+              making it suitable for medical applications. Green synthesis methods often produce nanoparticles
+              with reduced cytotoxic effects compared to chemical methods
+              <a href="https://www.sciencedirect.com/science/article/abs/pii/S2468519424005275" class="citation-link" target="_blank">[1]</a>.
+            </p>
+            <div class="insight-highlight">
+              <p class="font-semibold">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                Cotton fabrics treated with biosynthesized ZnO NPs demonstrated significant antibacterial activity
+                against E. coli and S. aureus with good biocompatibility.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ag Nanoparticles -->
+      <section id="ag-nanoparticles" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Fabric Treatment with Silver Nanoparticles</h2>
+          </div>
+
+          <div class="grid lg:grid-cols-3 gap-6 mb-8">
+            <div class="bento-card">
+              <h4 class="serif-heading text-lg font-semibold mb-3">Synthesis Approaches</h4>
+              <ul class="text-slate-600 space-y-2 text-sm">
+                <li>• Chemical reduction with sodium citrate</li>
+                <li>• Green synthesis using plant extracts</li>
+                <li>• Laser ablation methods</li>
+                <li>• In-situ synthesis on fabric surfaces</li>
+              </ul>
+            </div>
+
+            <div class="bento-card">
+              <h4 class="serif-heading text-lg font-semibold mb-3">Antimicrobial Mechanisms</h4>
+              <ul class="text-slate-600 space-y-2 text-sm">
+                <li>• Ag⁺ ion release and thiol group interaction</li>
+                <li>• ROS generation and oxidative stress</li>
+                <li>• Direct membrane damage</li>
+                <li>• DNA replication interference</li>
+              </ul>
+            </div>
+
+            <div class="bento-card">
+              <h4 class="serif-heading text-lg font-semibold mb-3">Key Applications</h4>
+              <ul class="text-slate-600 space-y-2 text-sm">
+                <li>• Wound dressings and bandages</li>
+                <li>• Surgical gowns and drapes</li>
+                <li>• Hospital linens and bedding</li>
+                <li>• Personal protective equipment</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Toxicity Considerations</h4>
+            <p class="text-slate-600 mb-4">
+              While Ag nanoparticles exhibit strong antimicrobial properties, their biocompatibility requires careful evaluation.
+              Toxicity depends on particle size, concentration, and surface characteristics
+              <a href="https://www.samaterials.com/content/silver-nanoparticles-in-medicine-a-powerful-tool-for-modern-healthcare.html" class="citation-link" target="_blank">[36]</a>.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                <h5 class="font-semibold text-red-800 mb-2">Potential Concerns</h5>
+                <ul class="text-red-700 text-sm space-y-1">
+                  <li>• Cellular toxicity at high concentrations</li>
+                  <li>• ROS-induced damage to mammalian cells</li>
+                  <li>• Long-term accumulation effects</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                <h5 class="font-semibold text-green-800 mb-2">Safety Measures</h5>
+                <ul class="text-green-700 text-sm space-y-1">
+                  <li>• Controlled release formulations</li>
+                  <li>• Optimized concentration levels</li>
+                  <li>• Enhanced nanoparticle stability</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Combined ZnO/Ag -->
+      <section id="combined-zno-ag" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Combined ZnO/Ag Nanoparticle Systems</h2>
+          </div>
+
+          <div class="highlight-box mb-8">
+            <h3 class="serif-heading text-2xl font-semibold mb-4">Synergistic Rationale</h3>
+            <p class="text-slate-600 mb-4">
+              The combination of ZnO and Ag nanoparticles creates multifunctional textiles with superior antibacterial efficacy
+              and enhanced UV protection. Different mechanisms of action complement each other, potentially reducing the
+              required concentration of each nanoparticle while improving overall performance.
+            </p>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h4 class="serif-heading text-xl font-semibold mb-4">Co-incorporation Methods</h4>
+              <div class="space-y-4">
+                <div class="bg-slate-50 p-4 rounded-lg">
+                  <h5 class="font-semibold text-slate-800 mb-2">Sequential Application</h5>
+                  <p class="text-slate-600 text-sm">
+                    Pre-synthesized ZnO and Ag NPs applied sequentially with binding agents
+                  </p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg">
+                  <h5 class="font-semibold text-slate-800 mb-2">Simultaneous Synthesis</h5>
+                  <p class="text-slate-600 text-sm">
+                    Co-precipitation of both nanoparticles on fabric surfaces
+                  </p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-lg">
+                  <h5 class="font-semibold text-slate-800 mb-2">In-situ Growth</h5>
+                  <p class="text-slate-600 text-sm">
+                    Thermal reduction of silver and zinc carbamate complexes on treated fabrics
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="serif-heading text-xl font-semibold mb-4">Enhanced Mechanisms</h4>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-sun text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <h6 class="font-semibold text-slate-800">Photocatalytic Enhancement</h6>
+                    <p class="text-slate-600 text-sm">
+                      ZnO photocatalysis promotes Ag⁰ formation and hydroxyl radical generation
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-bolt text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <h6 class="font-semibold text-slate-800">Charge Separation</h6>
+                    <p class="text-slate-600 text-sm">
+                      Ag NPs enhance electron-hole pair separation in ZnO, improving photocatalytic efficiency
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-crosshairs text-white text-sm"></i>
+                  </div>
+                  <div>
+                    <h6 class="font-semibold text-slate-800">Multi-Target Attack</h6>
+                    <p class="text-slate-600 text-sm">
+                      Combined Zn²⁺ and Ag⁺ ion release attacks multiple cellular targets simultaneously
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-slate-50 to-white p-6 rounded-xl border border-slate-200">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Clinical Performance Evidence</h4>
+            <p class="text-slate-600 mb-4">
+              Studies demonstrate that Ag/ZnO nanocomposites exhibit enhanced antibacterial activity compared to individual nanoparticles.
+              Cotton fabrics coated with Ag/ZnO mixtures showed <strong>99.9% antibacterial activity</strong> against
+              both S. aureus and E. coli
+              <a href="https://www.researchgate.net/publication/387133153_Research_upon_Ag-Doped_ZnO_Nanoparticles_Coated_on_Cotton_Fabric_for_Antibacterial_Boxer_Briefs_Underwear" class="citation-link" target="_blank">[131]</a>.
+            </p>
+            <div class="insight-highlight">
+              <p class="font-semibold">
+                <i class="fas fa-star text-yellow-500 mr-2"></i>
+                Wound dressings with ZnO@PDA/Ag hybrids demonstrated complete phototherapy inhibition of pathogens
+                and accelerated wound healing in rat models.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UV Protection -->
+      <section id="uv-protection" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">UV Protection Mechanisms</h2>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div class="bento-card">
+              <h4 class="serif-heading text-xl font-semibold mb-4">ZnO UV Blocking</h4>
+              <p class="text-slate-600 mb-4">
+                ZnO is a wide bandgap semiconductor (~3.37 eV) that strongly absorbs UV radiation
+                across UVA (320-400 nm) and UVB (280-320 nm) regions.
+              </p>
+              <ul class="space-y-2 text-slate-600 text-sm">
+                <li class="flex items-center"><i class="fas fa-arrow-right text-blue-500 mr-2"></i>High refractive index for scattering</li>
+                <li class="flex items-center"><i class="fas fa-arrow-right text-blue-500 mr-2"></i>Bandgap absorption mechanism</li>
+                <li class="flex items-center"><i class="fas fa-arrow-right text-blue-500 mr-2"></i>Enhanced surface area effects</li>
+              </ul>
+            </div>
+
+            <div class="bento-card">
+              <h4 class="serif-heading text-xl font-semibold mb-4">Ag Nanoparticle Effects</h4>
+              <p class="text-slate-600 mb-4">
+                Silver nanoparticles contribute through surface plasmon resonance and light scattering
+                due to high refractive index contrast with fabric fibers.
+              </p>
+              <ul class="space-y-2 text-slate-600 text-sm">
+                <li class="flex items-center"><i class="fas fa-arrow-right text-yellow-500 mr-2"></i>Surface plasmon resonance tuning</li>
+                <li class="flex items-center"><i class="fas fa-arrow-right text-yellow-500 mr-2"></i>Enhanced light scattering</li>
+                <li class="flex items-center"><i class="fas fa-arrow-right text-yellow-500 mr-2"></i>Schottky barrier formation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+            <h4 class="serif-heading text-xl font-semibold mb-6">UPF Performance Comparison</h4>
+            <div class="grid md:grid-cols-4 gap-4">
+              <div class="text-center p-4 bg-slate-50 rounded-lg">
+                <div class="text-2xl font-bold text-blue-600 mb-1">7.11</div>
+                <div class="text-xs text-slate-600">Untreated Cotton</div>
+                <div class="text-xs text-slate-500">Low Protection</div>
+              </div>
+              <div class="text-center p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
+                <div class="text-2xl font-bold text-blue-600 mb-1">35.52</div>
+                <div class="text-xs text-slate-600">ZnO Spray Coated</div>
+                <div class="text-xs text-green-600">High Protection</div>
+              </div>
+              <div class="text-center p-4 bg-green-50 rounded-lg border-2 border-green-200">
+                <div class="text-2xl font-bold text-green-600 mb-1">50+</div>
+                <div class="text-xs text-slate-600">TiO₂ Coated</div>
+                <div class="text-xs text-green-600">Excellent</div>
+              </div>
+              <div class="text-center p-4 bg-yellow-50 rounded-lg border-2 border-yellow-200">
+                <div class="text-2xl font-bold text-yellow-600 mb-1">157.8</div>
+                <div class="text-xs text-slate-600">ZnO-PDA Templated</div>
+                <div class="text-xs text-green-600">Excellent+</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Durability Performance</h4>
+            <p class="text-slate-600 mb-4">
+              Wash fastness studies demonstrate excellent durability of UV protective finishes.
+              Cotton fabrics with ZnO nanoparticles retained <strong>more than 80% of UV-protection
+                functions after 25 wash cycles</strong>
+              <a href="https://www.scirp.org/journal/paperinformation?paperid=60951" class="citation-link" target="_blank">[251]</a>.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-semibold text-slate-800 mb-2">Success Factors</h5>
+                <ul class="text-slate-600 text-sm space-y-1">
+                  <li>• Polymer binder systems</li>
+                  <li>• In-situ synthesis methods</li>
+                  <li>• Crosslinking agents</li>
+                  <li>• Optimal curing processes</li>
+                </ul>
+              </div>
+              <div>
+                <h5 class="font-semibold text-slate-800 mb-2">Performance Metrics</h5>
+                <ul class="text-slate-600 text-sm space-y-1">
+                  <li>• 80%+ function retention after 25 washes</li>
+                  <li>• UPF >50 maintained post-washing</li>
+                  <li>• Consistent nanoparticle adhesion</li>
+                  <li>• Minimal leaching observed</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Alternatives -->
+      <section id="alternatives" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Alternative Nanoparticles</h2>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div class="bento-card">
+              <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-atom text-blue-500 mr-3"></i>
+                Titanium Dioxide (TiO₂)
+              </h4>
+              <p class="text-slate-600 mb-4">
+                TiO₂ nanoparticles offer excellent UV blocking with a wide bandgap (3.2 eV for anatase phase)
+                and proven durability in textile applications.
+              </p>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">UV Protection</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-4/5 h-2 bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">Excellent</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">Self-Cleaning</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-5/6 h-2 bg-blue-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">High</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">Cost Effectiveness</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-4/5 h-2 bg-yellow-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">High</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bento-card">
+              <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                <i class="fas fa-shield-alt text-green-500 mr-3"></i>
+                Magnesium Oxide (MgO)
+              </h4>
+              <p class="text-slate-600 mb-4">
+                MgO nanoparticles demonstrate superior UV blocking performance with excellent biocompatibility
+                and FDA recognition as safe materials.
+              </p>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">UV Protection</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-full h-2 bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">Superior</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">Biocompatibility</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-full h-2 bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">Excellent</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-600">Green Synthesis</span>
+                  <div class="flex items-center">
+                    <div class="w-20 h-2 bg-slate-200 rounded-full mr-2">
+                      <div class="w-5/6 h-2 bg-green-500 rounded-full"></div>
+                    </div>
+                    <span class="text-sm font-semibold">High</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-slate-50 to-white p-6 rounded-xl border border-slate-200 mb-8">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Comparative Analysis</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200">
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Nanoparticle</th>
+                    <th class="text-center py-3 px-4 font-semibold text-slate-800">UPF Rating</th>
+                    <th class="text-center py-3 px-4 font-semibold text-slate-800">Antimicrobial</th>
+                    <th class="text-center py-3 px-4 font-semibold text-slate-800">Biocompatibility</th>
+                    <th class="text-center py-3 px-4 font-semibold text-slate-800">Cost</th>
+                  </tr>
+                </thead>
+                <tbody class="text-slate-600">
+                  <tr class="border-b border-slate-100">
+                    <td class="py-3 px-4">TiO₂</td>
+                    <td class="text-center py-3 px-4">
+                      <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">55.82</span>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-yellow-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">$</td>
+                  </tr>
+                  <tr class="border-b border-slate-100">
+                    <td class="py-3 px-4">MgO</td>
+                    <td class="text-center py-3 px-4">
+                      <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">71</span>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-500 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">$</td>
+                  </tr>
+                  <tr class="border-b border-slate-100">
+                    <td class="py-3 px-4">ZnO</td>
+                    <td class="text-center py-3 px-4">
+                      <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">58-157.8</span>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">$$</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4">Ag</td>
+                    <td class="text-center py-3 px-4">
+                      <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">33.4-89.9</span>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-green-500 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">
+                      <div class="w-3 h-3 bg-yellow-400 rounded-full mx-auto"></div>
+                    </td>
+                    <td class="text-center py-3 px-4">$$$</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="insight-highlight">
+            <h5 class="font-semibold mb-2">
+              <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+              Key Insight: MgO Performance Advantage
+            </h5>
+            <p class="text-slate-700">
+              In comparative studies, MgO nanoparticles demonstrated superior UV blocking performance (UPF 71)
+              compared to ZnO (UPF 58) on cotton fabrics, while maintaining excellent biocompatibility and
+              cost-effectiveness. This positions MgO as a highly promising alternative for UV protection applications.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Challenges and Future -->
+      <section id="challenges" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header">
+            <h2 class="serif-heading text-4xl font-bold text-slate-800 mb-4">Challenges & Future Perspectives</h2>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            <div class="space-y-6">
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                  <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
+                  Current Challenges
+                </h4>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <h5 class="font-semibold text-slate-800">Wash Fastness</h5>
+                      <p class="text-slate-600 text-sm">Maintaining nanoparticle adhesion and functionality after repeated laundering cycles</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <h5 class="font-semibold text-slate-800">Toxicity Concerns</h5>
+                      <p class="text-slate-600 text-sm">Balancing antimicrobial efficacy with biocompatibility and environmental safety</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <h5 class="font-semibold text-slate-800">Scalability</h5>
+                      <p class="text-slate-600 text-sm">Transitioning from laboratory synthesis to industrial-scale production</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                  <i class="fas fa-balance-scale text-blue-500 mr-3"></i>
+                  Regulatory Landscape
+                </h4>
+                <p class="text-slate-600 mb-4">
+                  Evolving regulatory requirements demand comprehensive safety assessments and standardized
+                  testing protocols for nanotextiles in medical applications.
+                </p>
+                <ul class="space-y-2 text-slate-600 text-sm">
+                  <li>• FDA and EMA compliance requirements</li>
+                  <li>• Standardized biocompatibility testing</li>
+                  <li>• Environmental impact assessments</li>
+                  <li>• Occupational safety considerations</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                  <i class="fas fa-rocket text-green-500 mr-3"></i>
+                  Future Research Directions
+                </h4>
+                <div class="space-y-4">
+                  <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                    <h5 class="font-semibold text-green-800 mb-2">Green Synthesis Optimization</h5>
+                    <p class="text-green-700 text-sm">Exploring diverse biological sources for enhanced nanoparticle properties and production efficiency</p>
+                  </div>
+                  <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h5 class="font-semibold text-blue-800 mb-2">Advanced Application Methods</h5>
+                    <p class="text-blue-700 text-sm">Developing novel binding systems and surface modification strategies for improved durability</p>
+                  </div>
+                  <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-400">
+                    <h5 class="font-semibold text-purple-800 mb-2">Multifunctional Composites</h5>
+                    <p class="text-purple-700 text-sm">Exploring synergistic combinations with other antimicrobial agents and functional materials</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bento-card">
+                <h4 class="serif-heading text-xl font-semibold mb-4 flex items-center">
+                  <i class="fas fa-chart-line text-yellow-500 mr-3"></i>
+                  Market Opportunities
+                </h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="text-center p-3 bg-yellow-50 rounded-lg">
+                    <div class="text-lg font-bold text-yellow-600">$22.93B</div>
+                    <div class="text-xs text-slate-600">Medical Textiles Market 2022</div>
+                  </div>
+                  <div class="text-center p-3 bg-blue-50 rounded-lg">
+                    <div class="text-lg font-bold text-blue-600">High</div>
+                    <div class="text-xs text-slate-600">Growth Projection</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4 class="serif-heading text-xl font-semibold mb-4">Strategic Recommendations</h4>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-flask text-blue-600 text-xl"></i>
+                </div>
+                <h5 class="font-semibold text-slate-800 mb-2">Research Focus</h5>
+                <p class="text-slate-600 text-sm">Prioritize green synthesis methods and comprehensive safety assessments</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-industry text-green-600 text-xl"></i>
+                </div>
+                <h5 class="font-semibold text-slate-800 mb-2">Manufacturing</h5>
+                <p class="text-slate-600 text-sm">Develop scalable, cost-effective production and application techniques</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-handshake text-purple-600 text-xl"></i>
+                </div>
+                <h5 class="font-semibold text-slate-800 mb-2">Collaboration</h5>
+                <p class="text-slate-600 text-sm">Foster partnerships between academia, industry, and regulatory bodies</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="py-16 bg-slate-800 text-white">
+        <div class="container mx-auto px-8 max-w-6xl">
+          <div class="section-header border-l-yellow-400">
+            <h2 class="serif-heading text-4xl font-bold mb-4">Conclusion</h2>
+          </div>
+
+          <div class="prose prose-lg prose-invert max-w-none">
+            <p class="text-slate-300 leading-relaxed mb-6">
+              The functionalization of textiles with nanoparticles, particularly <strong>zinc oxide (ZnO) and silver (Ag)</strong>,
+              represents a significant advancement in developing healthcare solutions, especially for medical textiles and
+              UV-protective clothing. These nanoparticles impart <strong>potent and often synergistic antibacterial properties</strong>
+              and significantly enhance UV protection factors (UPF), addressing critical needs in infection control and skin cancer prevention.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 my-8">
+              <div class="bg-slate-700 p-6 rounded-lg">
+                <h4 class="serif-heading text-xl font-semibold mb-4 text-yellow-400">Key Achievements</h4>
+                <ul class="space-y-2 text-slate-300">
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Demonstrated 99.9% antibacterial efficacy against common pathogens</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Achieved UPF ratings >50 for excellent UV protection</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Maintained functionality through 25+ wash cycles</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-check text-green-400 mt-1"></i>
+                    <span>Developed green synthesis methods for reduced toxicity</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-700 p-6 rounded-lg">
+                <h4 class="serif-heading text-xl font-semibold mb-4 text-yellow-400">Future Outlook</h4>
+                <ul class="space-y-2 text-slate-300">
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-arrow-right text-blue-400 mt-1"></i>
+                    <span>Alternative nanoparticles like MgO showing superior performance</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-arrow-right text-blue-400 mt-1"></i>
+                    <span>Enhanced understanding of synergistic combinations</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-arrow-right text-blue-400 mt-1"></i>
+                    <span>Improved durability and safety profiles</span>
+                  </li>
+                  <li class="flex items-start space-x-2">
+                    <i class="fas fa-arrow-right text-blue-400 mt-1"></i>
+                    <span>Scalable manufacturing processes</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text-slate-300 leading-relaxed">
+              The exploration of <strong>green synthesis methods</strong> offers a more sustainable and potentially safer
+              approach to nanoparticle production. However, challenges remain in <strong>durability, wash fastness,
+                toxicity assessment, and environmental impact</strong>. Addressing <strong>cost-effectiveness,
+                scalability of production, and regulatory standardization</strong> are crucial for the widespread
+              adoption of these advanced functional textiles.
+            </p>
+
+            <div class="bg-gradient-to-r from-yellow-500/10 to-yellow-600/10 p-6 rounded-lg border border-yellow-500/20 mt-8">
+              <p class="text-yellow-200 font-semibold text-center">
+                Future research should focus on optimizing synthesis and application techniques, conducting
+                comprehensive safety assessments, and exploring novel multifunctional nanocomposites to fully
+                realize the potential of nanoparticle-treated fabrics in enhancing healthcare outcomes and personal protection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+      <div class="nav-dot active" data-section="executive-summary"></div>
+      <div class="nav-dot" data-section="introduction"></div>
+      <div class="nav-dot" data-section="zno-nanoparticles"></div>
+      <div class="nav-dot" data-section="ag-nanoparticles"></div>
+      <div class="nav-dot" data-section="combined-zno-ag"></div>
+      <div class="nav-dot" data-section="uv-protection"></div>
+      <div class="nav-dot" data-section="alternatives"></div>
+      <div class="nav-dot" data-section="challenges"></div>
+      <div class="nav-dot" data-section="conclusion"></div>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="lg:hidden fixed top-4 left-4 z-50 bg-slate-800 text-white p-3 rounded-full shadow-lg" onclick="toggleMobileMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <script>
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xd4af37,
+            backgroundColor: 0x0f172a,
+            points: 8.00,
+            maxDistance: 25.00,
+            spacing: 20.00
+        });
+
+        // Table of Contents functionality
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const navDots = document.querySelectorAll('.nav-dot');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.id;
+                }
+            });
+
+            navDots.forEach(dot => {
+                dot.classList.toggle('active', dot.dataset.section === currentSection);
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
+            });
+        }
+
+        // Smooth scrolling for navigation
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation dot clicks
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    scrollToSection(dot.dataset.section);
+                });
+            });
+
+            // Table of contents clicks
+            document.querySelectorAll('.toc-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = link.getAttribute('href').substring(1);
+                    scrollToSection(sectionId);
+                });
+            });
+
+            // Scroll event for active section tracking
+            window.addEventListener('scroll', updateActiveSection);
+            updateActiveSection(); // Initial call
+        });
+
+        // Mobile menu toggle (for responsive design)
+        function toggleMobileMenu() {
+            const sidebar = document.querySelector('.toc-sidebar');
+            sidebar.classList.toggle('open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const sidebar = document.querySelector('.toc-sidebar');
+            const menuButton = document.querySelector('button[onclick="toggleMobileMenu()"]');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !menuButton.contains(event.target) && 
+                sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+  </body>
+
+</html>
